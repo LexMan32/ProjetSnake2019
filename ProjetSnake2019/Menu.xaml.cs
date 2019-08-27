@@ -18,11 +18,21 @@ namespace ProjetSnake2019
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Menu : Window
     {
-        public MainWindow()
+        public Menu()
         {
             InitializeComponent();
+        }
+
+        private void BT_JOUER_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BT_QUITTER_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
