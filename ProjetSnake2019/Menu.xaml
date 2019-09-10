@@ -9,8 +9,8 @@
     <Grid>
         <Label x:Name="LB_SNAKE2019" Content="Snake 2019" Margin="0,24,32,0" VerticalAlignment="Top" FontFamily="VCR OSD Mono" FontWeight="Bold" FontSize="48" HorizontalAlignment="Right" Width="303"/>
 
-        <Image Margin="261,91,82,0" Source="/Ressources/IMG/Apple.png" Stretch="Fill" RenderTransformOrigin="-0.312,0.067" Height="29" VerticalAlignment="Top"/>
-        <Image Margin="179,87,149,0" Source="/Ressources/IMG/SankeHead.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" Height="38" VerticalAlignment="Top">
+        <Image Margin="261,91,82,137" Source="/Ressources/IMG/Apple.png" Stretch="Fill" RenderTransformOrigin="-0.312,0.067"/>
+        <Image Margin="175,87,153,132" Source="/Ressources/IMG/SankeHead.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1" ScaleX="-1"/>
@@ -20,9 +20,9 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image Margin="147,92,190,0" Source="/Ressources/IMG/SnakeBody.png" Stretch="Fill" Height="29" VerticalAlignment="Top"/>
-        <Image Margin="113,92,224,0" Source="/Ressources/IMG/SnakeBody.png" Stretch="Fill" Height="29" VerticalAlignment="Top"/>
-        <Image Margin="75,89,257,0" Source="/Ressources/IMG/SnakeFoot.png" Stretch="Fill" Height="34" VerticalAlignment="Top"/>
+        <Image Margin="143,92,194,136" Source="/Ressources/IMG/SnakeBody.png" Stretch="Fill"/>
+        <Image Margin="111,92,226,136" Source="/Ressources/IMG/SnakeBody.png" Stretch="Fill"/>
+        <Image Margin="75,89,257,134" Source="/Ressources/IMG/SnakeFoot.png" Stretch="Fill"/>
 
         <Button x:Name="BT_JOUER" Content="Jouer" Margin="119,159,117,66" Width="130" Click="BT_JOUER_Click" ClickMode="Press" Style="{StaticResource Button}" RenderTransformOrigin="0.485,0.071"/>
         <Button x:Name="BT_QUITTER" Content="Quitter" Margin="106,191,104,34" Width="156" Click="BT_QUITTER_Click" ClickMode="Press" Style="{StaticResource Button}" RenderTransformOrigin="0.513,-0.649"/>
