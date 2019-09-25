@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Menu.xaml">
+    <Page Include="Vues\Menu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,7 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Menu.xaml.cs">
+    <Compile Include="Vues\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -90,21 +90,25 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Ressources\Police\VCR_OSD_MONO_1.001.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\IMG\Apple.png" />
+    <Resource Include="Ressources\Images\Apple.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\IMG\SankeHead.png" />
+    <Resource Include="Ressources\Images\SankeHead.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\IMG\SnakeBody.png" />
+    <Resource Include="Ressources\Images\SnakeBody.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\IMG\SnakeFoot.png" />
+    <Resource Include="Ressources\Images\SnakeFoot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
