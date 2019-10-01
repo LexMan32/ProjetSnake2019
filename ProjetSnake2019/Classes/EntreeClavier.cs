@@ -24,7 +24,7 @@ namespace ProjetSnake2019.Classes
         /// <summary>
         /// Détecte si une touche du clavier est pressée.
         /// </summary>
-        public static void ChangerEtat(Key touche, bool etat)
+        public static void changerEtatTouche(Key touche, bool etat)
         {
             tableTouche[touche] = etat;
         }
