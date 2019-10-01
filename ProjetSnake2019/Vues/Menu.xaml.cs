@@ -20,7 +20,8 @@ namespace ProjetSnake2019.Vues
         /// </summary>
         private void BT_JOUER_Click(object sender, RoutedEventArgs e)
         {
-
+            Partie partie = new Partie();
+            partie.ShowDialog();
         }
 
         /// <summary>

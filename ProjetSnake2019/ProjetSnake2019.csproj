@@ -69,7 +69,6 @@
     <Compile Include="Classes\Element.cs" />
     <Compile Include="Enumerations\Direction.cs" />
     <Compile Include="Classes\EntreeClavier.cs" />
-    <Compile Include="Classes\Partie.cs" />
     <Compile Include="Enumerations\TypeElement.cs" />
     <Compile Include="Vues\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
@@ -119,6 +118,8 @@
   <ItemGroup>
     <Resource Include="Ressources\Images\SnakeFoot.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Ressources\Images\Plateau.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

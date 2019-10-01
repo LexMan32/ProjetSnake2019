@@ -3,15 +3,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:ProjetSnake2019"
     mc:Ignorable="d"
     Title="Menu" Height="252.505" Width="375.457" Background="#FFECECEC" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    
-    <!-- Grid pour la mise en plage générale -->
     <Grid Margin="0,0,2,10">
         
         <!-- Titre -->
-        <Label x:Name="LB_SNAKE2019" Content="Snake 2019" Margin="36,21,38,146" FontFamily="VCR OSD Mono" FontWeight="Bold" FontSize="48"/>
+        <Label Content="Snake 2019" Margin="36,21,38,146" FontFamily="VCR OSD Mono" FontWeight="Bold" FontSize="48"/>
 
         <!-- Images du serpent et de la pomme -->
         <Grid Margin="50,77,49,0" Height="55" VerticalAlignment="Top">

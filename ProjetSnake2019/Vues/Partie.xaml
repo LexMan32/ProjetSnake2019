@@ -3,10 +3,34 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjetSnake2019.Vues"
         mc:Ignorable="d"
-        Title="Partie" Height="450" Width="800">
+        Title="Partie" Height="599.492" Width="1009.746" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <!-- Label pour le titre et le score -->
+        <Label Content="Snake 2019" Margin="54,21,657,502" FontFamily="VCR OSD Mono" FontWeight="Bold" FontSize="48"/>
+        <Label Content="Score:" Margin="96,104,796,455" FontFamily="VCR OSD Mono" FontSize="25"/>
+        <Label x:Name="LB_SCORE" Content="25600" Margin="202,104,690,455" FontFamily="VCR OSD Mono" FontSize="25"/>
+
+        <!-- Label pour les contrôles -->
+        <Label Content="Contrôles:" Margin="79,330,770,237" FontFamily="VCR OSD Mono" FontWeight="Bold" FontSize="23"/>
+        <Label Content="Haut: W ou ↑" Margin="119,368,687,199" FontFamily="VCR OSD Mono" FontSize="23"/>
+        <Label Content="Bas: S ou ↓" Margin="119,400,687,167" FontFamily="VCR OSD Mono" FontSize="23"/>
+        <Label Content="Gauche: A ou ←" Margin="119,432,687,135" FontFamily="VCR OSD Mono" FontSize="23"/>
+        <Label Content="Droite: D ou →" Margin="119,464,687,103" FontFamily="VCR OSD Mono" FontSize="23"/>
+        <Label Content="ESC: Pause" Margin="119,496,687,71" FontFamily="VCR OSD Mono" FontSize="23"/>
+
+        <!-- Plateau du jeu -->
+        <Image Margin="0,10,10,10" Source="/ProjetSnake2019;component/Ressources/Images/Plateau.png" HorizontalAlignment="Right" Width="580"/>
+        <Border BorderBrush="#FF102914" BorderThickness="5" Margin="0,5,5,5" HorizontalAlignment="Right" Width="589"/>
+
+        <!-- Menu Pause -->
+        <Grid x:Name="MENU_PAUSE">
+            <Rectangle HorizontalAlignment="Left" Height="599" Stroke="Black" VerticalAlignment="Top" Width="1010" Fill="Black" Opacity=".5"/>
+            <Rectangle Fill="White" HorizontalAlignment="Left" Height="188" Margin="353,212,0,0" Stroke="Black" VerticalAlignment="Top" Width="295"/>
+            <Border BorderBrush="#FF102914" BorderThickness="3" Margin="0,212,362,199" HorizontalAlignment="Right" Width="295"/>
+            <Label Content="Pause" Margin="438,226,440,324" FontFamily="VCR OSD Mono" FontWeight="Bold" FontSize="38"/>
+            <Button x:Name="BT_REPRENDRE" Content="Reprendre" Margin="410,300,413,261" ClickMode="Press" Style="{StaticResource Button}" RenderTransformOrigin="0.485,0.071" Click="BT_REPRENDRE_Click"/>
+            <Button x:Name="BT_QUITTER" Content="Quitter" Margin="410,341,416,219" ClickMode="Press" Style="{StaticResource Button}" RenderTransformOrigin="0.513,-0.649" Click="BT_QUITTER_Click"/>
+        </Grid>
     </Grid>
 </Window>

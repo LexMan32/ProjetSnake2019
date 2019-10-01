@@ -19,9 +19,25 @@ namespace ProjetSnake2019.Vues
     /// </summary>
     public partial class Partie : Window
     {
+        private Grid menuPause;
+
         public Partie()
         {
             InitializeComponent();
+
+            menuPause = (Grid)this.FindName("MENU_PAUSE");
+            menuPause.Visibility = Visibility.Hidden;
+        }
+
+        private void BT_REPRENDRE_Click(object sender, RoutedEventArgs e)
+        {
+            menuPause = (Grid)this.FindName("MENU_PAUSE");
+            menuPause.Visibility = Visibility.Hidden;
+        }
+
+        private void BT_QUITTER_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
