@@ -20,7 +20,7 @@
         <Label Content="ESC: Pause" Margin="119,496,687,71" FontFamily="VCR OSD Mono" FontSize="23"/>
 
         <!-- Plateau du jeu -->
-        <Image Margin="0,10,10,10" Source="/ProjetSnake2019;component/Ressources/Images/Plateau.png" HorizontalAlignment="Right" Width="580"/>
+        <Image x:Name="IM_PLATEAU" Margin="0,10,10,10" Source="/ProjetSnake2019;component/Ressources/Images/Plateau.png" HorizontalAlignment="Right" Width="580"/>
         <Border BorderBrush="#FF102914" BorderThickness="5" Margin="0,5,5,5" HorizontalAlignment="Right" Width="589"/>
 
         <!-- Menu Pause -->
