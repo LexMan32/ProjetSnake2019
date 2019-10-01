@@ -69,6 +69,7 @@
     <Compile Include="Classes\CaseTete.cs" />
     <Compile Include="Classes\CaseVide.cs" />
     <Compile Include="Classes\CasePomme.cs" />
+    <Compile Include="Classes\EntreeClavier.cs" />
     <Compile Include="Classes\Plateau.cs" />
     <Compile Include="Classes\Position.cs" />
     <Compile Include="Classes\Serpent.cs" />
