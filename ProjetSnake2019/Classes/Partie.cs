@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProjetSnake2019.Classes
 {
-    class CaseTete
+    class Partie
     {
+        private List<Element> serpent;
+        private Element pomme;
+
+        public Partie()
+        {
+            
+        }
     }
 }

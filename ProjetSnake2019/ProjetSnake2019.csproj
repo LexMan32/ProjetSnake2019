@@ -63,16 +63,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\AbstractCase.cs" />
-    <Compile Include="Classes\CaseCorp.cs" />
-    <Compile Include="Classes\CaseQueue.cs" />
-    <Compile Include="Classes\CaseTete.cs" />
-    <Compile Include="Classes\CaseVide.cs" />
-    <Compile Include="Classes\CasePomme.cs" />
+    <Compile Include="Classes\Element.cs" />
     <Compile Include="Enumerations\Direction.cs" />
     <Compile Include="Classes\EntreeClavier.cs" />
-    <Compile Include="Classes\Plateau.cs" />
-    <Compile Include="Classes\Serpent.cs" />
+    <Compile Include="Classes\Partie.cs" />
+    <Compile Include="Enumerations\TypeElement.cs" />
     <Compile Include="Vues\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
       <SubType>Code</SubType>
