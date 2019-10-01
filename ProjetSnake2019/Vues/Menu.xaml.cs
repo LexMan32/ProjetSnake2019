@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ProjetSnake2019
+namespace ProjetSnake2019.Vues
 {
     /// <summary>
     /// Logique d'interaction pour Menu.xaml
