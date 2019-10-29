@@ -55,10 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Vues\Partie.xaml.cs">
-      <DependentUpon>Partie.xaml</DependentUpon>
+    <Compile Include="Classes\SnakePart.cs" />
+    <Compile Include="Vues\Game.xaml.cs">
+      <DependentUpon>Game.xaml</DependentUpon>
     </Compile>
-    <Page Include="Vues\Menu.xaml">
+    <Page Include="Vues\Main.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -66,15 +67,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\Element.cs" />
-    <Compile Include="Enumerations\Direction.cs" />
-    <Compile Include="Classes\EntreeClavier.cs" />
-    <Compile Include="Enumerations\TypeElement.cs" />
-    <Compile Include="Vues\Menu.xaml.cs">
-      <DependentUpon>Menu.xaml</DependentUpon>
+    <Compile Include="Vues\Main.xaml.cs">
+      <DependentUpon>Main.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Vues\Partie.xaml">
+    <Page Include="Vues\Game.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

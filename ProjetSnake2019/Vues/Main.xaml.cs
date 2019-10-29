@@ -6,12 +6,12 @@ namespace ProjetSnake2019.Vues
     /// <summary>
     /// Logique d'interaction pour Menu.xaml
     /// </summary>
-    public partial class Menu : Window
+    public partial class Main : Window
     {
         /// <summary>
         /// Constructeur par défaut.
         /// </summary>
-        public Menu()
+        public Main()
         {
             InitializeComponent();
         }
@@ -21,8 +21,8 @@ namespace ProjetSnake2019.Vues
         /// </summary>
         private void BT_JOUER_Click(object sender, RoutedEventArgs e)
         {
-            Partie partie = new Partie();
-            partie.ShowDialog();
+            Game game = new Game();
+            game.ShowDialog();
         }
 
         /// <summary>

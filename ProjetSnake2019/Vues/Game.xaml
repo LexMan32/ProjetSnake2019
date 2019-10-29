@@ -1,14 +1,15 @@
-﻿<Window x:Class="ProjetSnake2019.Vues.Partie"
+﻿<Window x:Class="ProjetSnake2019.Vues.Game"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Partie" Height="599.492" Width="1009.746" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Partie" Height="599.492" Width="1009.746" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        ContentRendered="Window_ContentRendered" KeyUp="Window_KeyUp">
     <Grid>
         <!-- Label pour le titre et le score -->
         <Label Content="Snake 2019" Margin="54,21,657,502" FontFamily="VCR OSD Mono" FontWeight="Bold" FontSize="48"/>
-        <Label Content="Score:" Margin="96,104,796,455" FontFamily="VCR OSD Mono" FontSize="25"/>
+        <Label Content="Score :" Margin="96,104,796,455" FontFamily="VCR OSD Mono" FontSize="25"/>
         <Label x:Name="LB_SCORE" Content="25600" Margin="202,104,690,455" FontFamily="VCR OSD Mono" FontSize="25"/>
 
         <!-- Label pour les contrôles -->
@@ -21,7 +22,7 @@
 
         <!-- Plateau du jeu -->
         <Border BorderBrush="#FF102914" BorderThickness="5" Margin="0,6,5,7" HorizontalAlignment="Right" Width="585">
-            <Canvas x:Name="CV_PLATEAU"  Height="576" Margin="0,0,0,0" HorizontalAlignment="Right" Width="576">
+            <Canvas x:Name="GameArea"  Height="576" Margin="0,0,0,0" HorizontalAlignment="Right" Width="576">
                 <Canvas.Background>
                     <ImageBrush ImageSource="/ProjetSnake2019;component/Ressources/Images/Plateau.png" Stretch="Fill"/>
                 </Canvas.Background>
@@ -36,6 +37,18 @@
             <Label Content="Pause" Margin="438,226,440,324" FontFamily="VCR OSD Mono" FontWeight="Bold" FontSize="38"/>
             <Button x:Name="BT_REPRENDRE" Content="Reprendre" Margin="410,300,413,261" ClickMode="Press" Style="{StaticResource Button}" RenderTransformOrigin="0.485,0.071" Click="BT_REPRENDRE_Click"/>
             <Button x:Name="BT_QUITTER" Content="Quitter" Margin="410,341,416,219" ClickMode="Press" Style="{StaticResource Button}" RenderTransformOrigin="0.513,-0.649" Click="BT_QUITTER_Click"/>
+        </Grid>
+
+        <!-- Menu Fin -->
+        <Grid x:Name="MENU_FIN">
+            <Rectangle HorizontalAlignment="Left" Height="599" Stroke="Black" VerticalAlignment="Top" Width="1010" Fill="Black" Opacity=".5"/>
+            <Rectangle Fill="White" HorizontalAlignment="Left" Height="227" Margin="353,191,0,0" Stroke="Black" VerticalAlignment="Top" Width="295"/>
+            <Border BorderBrush="#FF102914" BorderThickness="3" Margin="0,191,362,181" HorizontalAlignment="Right" Width="295"/>
+            <Label Content="Fin de partie" Margin="383,207,390,343" FontFamily="VCR OSD Mono" FontWeight="Bold" FontSize="38"/>
+            <Label Content="Score :" Margin="410,266,509,297" FontFamily="VCR OSD Mono" FontSize="25"/>
+            <Label x:Name="LB_SCORE_FIN" Content="25600" Margin="501,266,418,297" FontFamily="VCR OSD Mono" FontSize="25"/>
+            <Button x:Name="BT_REJOUER" Content="Rejouer" Margin="410,321,413,240" ClickMode="Press" Style="{StaticResource Button}" RenderTransformOrigin="0.485,0.071" Click="BT_REJOUER_Click"/>
+            <Button x:Name="BT_QUITTER_FIN" Content="Quitter" Margin="410,362,416,198" ClickMode="Press" Style="{StaticResource Button}" RenderTransformOrigin="0.513,-0.649" Click="BT_QUITTER_Click"/>
         </Grid>
     </Grid>
 </Window>
