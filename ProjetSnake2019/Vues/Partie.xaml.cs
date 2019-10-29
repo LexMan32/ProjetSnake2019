@@ -57,7 +57,7 @@ namespace ProjetSnake2019.Vues
             // Vitesse du jeu + démarrage du timer
             gameTimer = new DispatcherTimer();
             gameTimer.Interval = TimeSpan.FromMilliseconds(5000);
-            gameTimer.Tick += raffraichirEcran;
+            gameTimer.Tick += new EventHandler(raffraichirEcran);
             gameTimer.Start();
 
             // Démarrer le jeu
@@ -79,7 +79,7 @@ namespace ProjetSnake2019.Vues
             pomme = new Element(random.Next(0,maxX), random.Next(0,maxY), Direction.Haut, TypeElement.Pomme);
         }
 
-        private void raffraichirEcran()
+        private void raffraichirEcran(object sender, EventArgs e)
         {
             if (gameOver)
             {
@@ -96,10 +96,29 @@ namespace ProjetSnake2019.Vues
                 else if ((EntreeClavier.estTouchePressee(Key.Down) || EntreeClavier.estTouchePressee(Key.S)) && direction != Direction.Haut)
                     direction = Direction.Bas;
 
-                bougerJoueur();
+                bougerSerpent();
             }
 
-            imPlateau.Invalidate();
+            // imPlateau.Invalidate();
+        }
+
+        public void bougerSerpent()
+        {
+            foreach (Element element in serpent)
+            {
+                switch (direction)
+                {
+                    case Direction.Haut:
+                        element.setPositionY(element.getPositionY() + 1); 
+                        break;
+                    case Direction.Bas:
+                        break;
+                    case Direction.Gauche:
+                        break;
+                    case Direction.Droite:
+                        break;
+                }
+            }
         }
 
         private void BT_REPRENDRE_Click(object sender, RoutedEventArgs e)
