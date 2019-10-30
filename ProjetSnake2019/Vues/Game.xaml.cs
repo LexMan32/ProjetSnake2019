@@ -27,7 +27,7 @@ namespace ProjetSnake2019.Vues
         const int SnakeSquareSize = 36;
         const int SnakeStartLength = 3;
         const int SnakeStartSpeed = 400;
-        const int SnakeSpeedThreshold = 50;
+        const int SnakeSpeedThreshold = 100;
         private int snakeLength;
         private int currentScore = 0;
 
@@ -234,8 +234,8 @@ namespace ProjetSnake2019.Vues
         private void EatSnakeFood()
         {
             snakeLength++;
-            currentScore = currentScore + 10;
-            int timerInterval = Math.Max(SnakeSpeedThreshold, (int)gameTickTimer.Interval.TotalMilliseconds - (currentScore * 2));
+            currentScore += 10;
+            int timerInterval = Math.Max(SnakeSpeedThreshold, (int)gameTickTimer.Interval.TotalMilliseconds - 10);
             gameTickTimer.Interval = TimeSpan.FromMilliseconds(timerInterval);
             GameArea.Children.Remove(snakeFood);
             DrawSnakeFood();
