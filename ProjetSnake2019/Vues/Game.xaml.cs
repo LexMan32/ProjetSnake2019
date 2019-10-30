@@ -1,4 +1,5 @@
 ﻿using ProjetSnake2019.Classes;
+using ProjetSnake2019.Enumeration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,23 +24,12 @@ namespace ProjetSnake2019.Vues
     {
         private System.Windows.Threading.DispatcherTimer gameTickTimer = new System.Windows.Threading.DispatcherTimer();
         private Random rnd = new Random();
-
-        const int SnakeSquareSize = 36;
-        const int SnakeStartLength = 3;
-        const int SnakeStartSpeed = 400;
-        const int SnakeSpeedThreshold = 100;
         private int snakeLength;
-        private int currentScore = 0;
-
-        private SolidColorBrush snakeBodyBrush = Brushes.Green;
-        private SolidColorBrush snakeHeadBrush = Brushes.DarkGreen;
-        private SolidColorBrush foodBrush = Brushes.Red;
+        private int currentScore;
+        private Direction snakeDirection;
 
         private List<SnakePart> snakeParts = new List<SnakePart>();
-        private UIElement snakeFood = null;
-
-        public enum SnakeDirection { Left, Right, Up, Down };
-        private SnakeDirection snakeDirection = SnakeDirection.Right;
+        private SnakeFood snakeFood = null;
 
         public Game()
         {
@@ -53,20 +43,30 @@ namespace ProjetSnake2019.Vues
         {
             foreach (SnakePart snakeBodyPart in snakeParts)
             {
-                if (snakeBodyPart.UiElement != null)
-                    GameArea.Children.Remove(snakeBodyPart.UiElement);
+                if (snakeBodyPart.getUiElement() != null) { 
+                    GameArea.Children.Remove(snakeBodyPart.getUiElement());
+                }
             }
-            snakeParts.Clear();
-            if (snakeFood != null)
-                GameArea.Children.Remove(snakeFood);
 
+            snakeParts.Clear();
+
+            if (snakeFood != null)
+            {
+                GameArea.Children.Remove(snakeFood.getUiElement());
+            }
+
+            snakeLength = 3;
             currentScore = 0;
-            snakeLength = SnakeStartLength;
-            snakeDirection = SnakeDirection.Right;
-            snakeParts.Add(new SnakePart() { Position = new Point(SnakeSquareSize * 5, SnakeSquareSize * 5) });
-            gameTickTimer.Interval = TimeSpan.FromMilliseconds(SnakeStartSpeed);
+            snakeDirection = Direction.Right;
+
+            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 3, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Tail));
+            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 4, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Body));
+            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 5, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Head));
+
+            gameTickTimer.Interval = TimeSpan.FromMilliseconds(Configuration.SNAKE_START_SPEED);
 
             DrawSnake();
+
             DrawSnakeFood();
 
             UpdateGameStatus();
@@ -74,87 +74,63 @@ namespace ProjetSnake2019.Vues
             gameTickTimer.IsEnabled = true;
         }
 
-        private void Window_ContentRendered(object sender, EventArgs e)
-        {
-            StartNewGame();
-        }
-
-        private void GameTickTimer_Tick(object sender, EventArgs e)
-        {
-            MoveSnake();
-        }
-
         private void DrawSnake()
         {
             foreach (SnakePart snakePart in snakeParts)
             {
-                if (snakePart.UiElement == null)
-                {
-                    snakePart.UiElement = new Rectangle()
-                    {
-                        Width = SnakeSquareSize,
-                        Height = SnakeSquareSize,
-                        Fill = (snakePart.IsHead ? snakeHeadBrush : snakeBodyBrush)
-                    };
-                    GameArea.Children.Add(snakePart.UiElement);
-                    Canvas.SetTop(snakePart.UiElement, snakePart.Position.Y);
-                    Canvas.SetLeft(snakePart.UiElement, snakePart.Position.X);
-                }
+                GameArea.Children.Add(snakePart.getUiElement());
+                Canvas.SetTop(snakePart.getUiElement(), snakePart.getPosition().Y);
+                Canvas.SetLeft(snakePart.getUiElement(), snakePart.getPosition().X);
             }
         }
 
         private void DrawSnakeFood()
         {
-            Point foodPosition = GetNextFoodPosition();
-            snakeFood = new Ellipse()
-            {
-                Width = SnakeSquareSize,
-                Height = SnakeSquareSize,
-                Fill = foodBrush
-            };
-            GameArea.Children.Add(snakeFood);
-            Canvas.SetTop(snakeFood, foodPosition.Y);
-            Canvas.SetLeft(snakeFood, foodPosition.X);
+            snakeFood = new SnakeFood(GetNextFoodPosition());
+            
+            GameArea.Children.Add(snakeFood.getUiElement());
+            Canvas.SetTop(snakeFood.getUiElement(), snakeFood.getPosition().Y);
+            Canvas.SetLeft(snakeFood.getUiElement(), snakeFood.getPosition().X);
         }
 
         private void MoveSnake()
         {
             while (snakeParts.Count >= snakeLength)
             {
-                GameArea.Children.Remove(snakeParts[0].UiElement);
+                GameArea.Children.Remove(snakeParts[0].getUiElement());
+                GameArea.Children.Remove(snakeParts[1].getUiElement());
                 snakeParts.RemoveAt(0);
             }
 
             foreach (SnakePart snakePart in snakeParts)
             {
-                (snakePart.UiElement as Rectangle).Fill = snakeBodyBrush;
-                snakePart.IsHead = false;
+                GameArea.Children.Remove(snakePart.getUiElement());
             }
+
+            snakeParts[0].setTypeSnakePart(TypeSnakePart.Tail);
 
             SnakePart snakeHead = snakeParts[snakeParts.Count - 1];
-            double nextX = snakeHead.Position.X;
-            double nextY = snakeHead.Position.Y;
+            double nextX = snakeHead.getPosition().X;
+            double nextY = snakeHead.getPosition().Y;
+            snakeHead.setTypeSnakePart(TypeSnakePart.Body);
+
             switch (snakeDirection)
             {
-                case SnakeDirection.Left:
-                    nextX -= SnakeSquareSize;
+                case Direction.Left:
+                    nextX -= Configuration.SNAKE_SQUARE_SIZE;
                     break;
-                case SnakeDirection.Right:
-                    nextX += SnakeSquareSize;
+                case Direction.Right:
+                    nextX += Configuration.SNAKE_SQUARE_SIZE;
                     break;
-                case SnakeDirection.Up:
-                    nextY -= SnakeSquareSize;
+                case Direction.Up:
+                    nextY -= Configuration.SNAKE_SQUARE_SIZE;
                     break;
-                case SnakeDirection.Down:
-                    nextY += SnakeSquareSize;
+                case Direction.Down:
+                    nextY += Configuration.SNAKE_SQUARE_SIZE;
                     break;
             }
 
-            snakeParts.Add(new SnakePart()
-            {
-                Position = new Point(nextX, nextY),
-                IsHead = true
-            });
+            snakeParts.Add(new SnakePart(new Point(nextX, nextY), TypeSnakePart.Head));
 
             DrawSnake();
 
@@ -163,14 +139,14 @@ namespace ProjetSnake2019.Vues
 
         private Point GetNextFoodPosition()
         {
-            int maxX = (int)(GameArea.ActualWidth / SnakeSquareSize);
-            int maxY = (int)(GameArea.ActualHeight / SnakeSquareSize);
-            int foodX = rnd.Next(0, maxX) * SnakeSquareSize;
-            int foodY = rnd.Next(0, maxY) * SnakeSquareSize;
+            int maxX = (int)(GameArea.ActualWidth / Configuration.SNAKE_SQUARE_SIZE);
+            int maxY = (int)(GameArea.ActualHeight / Configuration.SNAKE_SQUARE_SIZE);
+            int foodX = rnd.Next(0, maxX) * Configuration.SNAKE_SQUARE_SIZE;
+            int foodY = rnd.Next(0, maxY) * Configuration.SNAKE_SQUARE_SIZE;
 
             foreach (SnakePart snakePart in snakeParts)
             {
-                if ((snakePart.Position.X == foodX) && (snakePart.Position.Y == foodY))
+                if ((snakePart.getPosition().X == foodX) && (snakePart.getPosition().Y == foodY))
                     return GetNextFoodPosition();
             }
 
@@ -183,23 +159,23 @@ namespace ProjetSnake2019.Vues
             {
                 case Key.Up:
                 case Key.W:
-                    if (snakeDirection != SnakeDirection.Down)
-                        snakeDirection = SnakeDirection.Up;
+                    if (snakeDirection != Direction.Down)
+                        snakeDirection = Direction.Up;
                     break;
                 case Key.Down:
                 case Key.S:
-                    if (snakeDirection != SnakeDirection.Up)
-                        snakeDirection = SnakeDirection.Down;
+                    if (snakeDirection != Direction.Up)
+                        snakeDirection = Direction.Down;
                     break;
                 case Key.Left:
                 case Key.A:
-                    if (snakeDirection != SnakeDirection.Right)
-                        snakeDirection = SnakeDirection.Left;
+                    if (snakeDirection != Direction.Right)
+                        snakeDirection = Direction.Left;
                     break;
                 case Key.Right:
                 case Key.D:
-                    if (snakeDirection != SnakeDirection.Left)
-                        snakeDirection = SnakeDirection.Right;
+                    if (snakeDirection != Direction.Left)
+                        snakeDirection = Direction.Right;
                     break;
                 case Key.Escape:
                     MENU_PAUSE.Visibility = Visibility.Visible;
@@ -212,21 +188,21 @@ namespace ProjetSnake2019.Vues
         {
             SnakePart snakeHead = snakeParts[snakeParts.Count - 1];
 
-            if ((snakeHead.Position.X == Canvas.GetLeft(snakeFood)) && (snakeHead.Position.Y == Canvas.GetTop(snakeFood)))
+            if ((snakeHead.getPosition().X == Canvas.GetLeft(snakeFood.getUiElement())) && (snakeHead.getPosition().Y == Canvas.GetTop(snakeFood.getUiElement())))
             {
                 EatSnakeFood();
                 return;
             }
 
-            if ((snakeHead.Position.Y < 0) || (snakeHead.Position.Y >= GameArea.ActualHeight) ||
-            (snakeHead.Position.X < 0) || (snakeHead.Position.X >= GameArea.ActualWidth))
+            if ((snakeHead.getPosition().Y < 0) || (snakeHead.getPosition().Y >= GameArea.ActualHeight) ||
+            (snakeHead.getPosition().X < 0) || (snakeHead.getPosition().X >= GameArea.ActualWidth))
             {
                 EndGame();
             }
 
             foreach (SnakePart snakeBodyPart in snakeParts.Take(snakeParts.Count - 1))
             {
-                if ((snakeHead.Position.X == snakeBodyPart.Position.X) && (snakeHead.Position.Y == snakeBodyPart.Position.Y))
+                if ((snakeHead.getPosition().X == snakeBodyPart.getPosition().X) && (snakeHead.getPosition().Y == snakeBodyPart.getPosition().Y))
                     EndGame();
             }
         }
@@ -235,9 +211,9 @@ namespace ProjetSnake2019.Vues
         {
             snakeLength++;
             currentScore += 10;
-            int timerInterval = Math.Max(SnakeSpeedThreshold, (int)gameTickTimer.Interval.TotalMilliseconds - 10);
+            int timerInterval = Math.Max(Configuration.SNAKE_SPEED_THRESHOLD, (int)gameTickTimer.Interval.TotalMilliseconds - 10);
             gameTickTimer.Interval = TimeSpan.FromMilliseconds(timerInterval);
-            GameArea.Children.Remove(snakeFood);
+            GameArea.Children.Remove(snakeFood.getUiElement());
             DrawSnakeFood();
             UpdateGameStatus();
         }
@@ -252,6 +228,16 @@ namespace ProjetSnake2019.Vues
         {
             gameTickTimer.IsEnabled = false;
             MENU_FIN.Visibility = Visibility.Visible;
+        }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            StartNewGame();
+        }
+
+        private void GameTickTimer_Tick(object sender, EventArgs e)
+        {
+            MoveSnake();
         }
 
         private void BT_REPRENDRE_Click(object sender, RoutedEventArgs e)

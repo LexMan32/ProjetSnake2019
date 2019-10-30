@@ -55,7 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Configuration.cs" />
+    <Compile Include="Classes\SnakeFood.cs" />
     <Compile Include="Classes\SnakePart.cs" />
+    <Compile Include="Enumeration\Direction.cs" />
+    <Compile Include="Enumeration\TypeSnakePart.cs" />
     <Compile Include="Vues\Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
     </Compile>
@@ -107,16 +111,17 @@
     <Resource Include="Ressources\Images\Apple.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\Images\SankeHead.png" />
+    <Resource Include="Ressources\Images\SnakeHead.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Ressources\Images\SnakeBody.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\Images\SnakeFoot.png" />
+    <Resource Include="Ressources\Images\SnakeTail.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Ressources\Images\Plateau.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

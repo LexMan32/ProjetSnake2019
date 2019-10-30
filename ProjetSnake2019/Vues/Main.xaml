@@ -12,7 +12,7 @@
 
         <!-- Images du serpent et de la pomme -->
         <Grid Margin="50,77,49,0" Height="55" VerticalAlignment="Top">
-            <Image Margin="137,5,90,5" Source="/Ressources/Images/SankeHead.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+            <Image Margin="137,5,90,5" Source="/Ressources/Images/SnakeHead.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
                 <Image.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1" ScaleX="-1"/>
@@ -24,7 +24,7 @@
             </Image>
             <Image Margin="96,9,141,9" Source="/Ressources/Images/SnakeBody.png" Stretch="Fill"/>
             <Image Margin="57,9,181,9" Source="/Ressources/Images/SnakeBody.png" Stretch="Fill"/>
-            <Image Margin="13,6,220,7" Source="/Ressources/Images/SnakeFoot.png" Stretch="Fill"/>
+            <Image Margin="13,6,220,7" Source="/Ressources/Images/SnakeTail.png" Stretch="Fill"/>
             <Image Margin="218,4,18,9" Source="/Ressources/Images/Apple.png" Stretch="Fill"/>
         </Grid>
 
