@@ -51,7 +51,6 @@ namespace ProjetSnake2019.Vues
 
         private void StartNewGame()
         {
-            // Remove potential dead snake parts and leftover food...
             foreach (SnakePart snakeBodyPart in snakeParts)
             {
                 if (snakeBodyPart.UiElement != null)
@@ -61,21 +60,17 @@ namespace ProjetSnake2019.Vues
             if (snakeFood != null)
                 GameArea.Children.Remove(snakeFood);
 
-            // Reset stuff
             currentScore = 0;
             snakeLength = SnakeStartLength;
             snakeDirection = SnakeDirection.Right;
             snakeParts.Add(new SnakePart() { Position = new Point(SnakeSquareSize * 5, SnakeSquareSize * 5) });
             gameTickTimer.Interval = TimeSpan.FromMilliseconds(SnakeStartSpeed);
 
-            // Draw the snake again and some new food...
             DrawSnake();
             DrawSnakeFood();
 
-            // Update status
             UpdateGameStatus();
-
-            // Go!        
+       
             gameTickTimer.IsEnabled = true;
         }
 
@@ -124,22 +119,18 @@ namespace ProjetSnake2019.Vues
 
         private void MoveSnake()
         {
-            // Remove the last part of the snake, in preparation of the new part added below  
             while (snakeParts.Count >= snakeLength)
             {
                 GameArea.Children.Remove(snakeParts[0].UiElement);
                 snakeParts.RemoveAt(0);
             }
-            // Next up, we'll add a new element to the snake, which will be the (new) head  
-            // Therefore, we mark all existing parts as non-head (body) elements and then  
-            // we make sure that they use the body brush  
+
             foreach (SnakePart snakePart in snakeParts)
             {
                 (snakePart.UiElement as Rectangle).Fill = snakeBodyBrush;
                 snakePart.IsHead = false;
             }
 
-            // Determine in which direction to expand the snake, based on the current direction  
             SnakePart snakeHead = snakeParts[snakeParts.Count - 1];
             double nextX = snakeHead.Position.X;
             double nextY = snakeHead.Position.Y;
@@ -159,15 +150,14 @@ namespace ProjetSnake2019.Vues
                     break;
             }
 
-            // Now add the new head part to our list of snake parts...  
             snakeParts.Add(new SnakePart()
             {
                 Position = new Point(nextX, nextY),
                 IsHead = true
             });
-            //... and then have it drawn!  
+
             DrawSnake();
-            // We'll get to this later...  
+
             DoCollisionCheck();          
         }
 
