@@ -27,7 +27,7 @@ namespace ProjetSnake2019.Vues
         const int SnakeSquareSize = 36;
         const int SnakeStartLength = 3;
         const int SnakeStartSpeed = 400;
-        const int SnakeSpeedThreshold = 100;
+        const int SnakeSpeedThreshold = 50;
         private int snakeLength;
         private int currentScore = 0;
 
