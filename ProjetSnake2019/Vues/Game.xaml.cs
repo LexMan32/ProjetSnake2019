@@ -179,7 +179,6 @@ namespace ProjetSnake2019.Vues
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            SnakeDirection originalSnakeDirection = snakeDirection;
             switch (e.Key)
             {
                 case Key.Up:
@@ -207,8 +206,6 @@ namespace ProjetSnake2019.Vues
                     gameTickTimer.IsEnabled = false;
                     break;
             }
-            if (snakeDirection != originalSnakeDirection)
-                MoveSnake();
         }
 
         private void DoCollisionCheck()
