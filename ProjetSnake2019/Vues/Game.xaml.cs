@@ -3,17 +3,9 @@ using ProjetSnake2019.Enumeration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace ProjetSnake2019.Vues
 {
@@ -27,6 +19,8 @@ namespace ProjetSnake2019.Vues
         private int snakeLength;
         private int currentScore;
         private Direction snakeDirection;
+        private bool isSnakeAuthorizedToMove;
+        private bool isAuthorizedToDrawSnake;
 
         private List<SnakePart> snakeParts = new List<SnakePart>();
         private SnakeFood snakeFood = null;
@@ -64,6 +58,8 @@ namespace ProjetSnake2019.Vues
             snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 5, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Head));
 
             gameTickTimer.Interval = TimeSpan.FromMilliseconds(Configuration.SNAKE_START_SPEED);
+
+            isAuthorizedToDrawSnake = true;
 
             DrawSnake();
 
@@ -132,9 +128,14 @@ namespace ProjetSnake2019.Vues
 
             snakeParts.Add(new SnakePart(new Point(nextX, nextY), TypeSnakePart.Head));
 
-            DrawSnake();
+            DoCollisionCheck();
 
-            DoCollisionCheck();          
+            if (isAuthorizedToDrawSnake)
+            {
+                DrawSnake();
+            }
+
+            DoCollisionCheckFood();
         }
 
         private Point GetNextFoodPosition()
@@ -155,44 +156,42 @@ namespace ProjetSnake2019.Vues
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            switch (e.Key)
-            {
-                case Key.Up:
-                case Key.W:
-                    if (snakeDirection != Direction.Down)
-                        snakeDirection = Direction.Up;
-                    break;
-                case Key.Down:
-                case Key.S:
-                    if (snakeDirection != Direction.Up)
-                        snakeDirection = Direction.Down;
-                    break;
-                case Key.Left:
-                case Key.A:
-                    if (snakeDirection != Direction.Right)
-                        snakeDirection = Direction.Left;
-                    break;
-                case Key.Right:
-                case Key.D:
-                    if (snakeDirection != Direction.Left)
-                        snakeDirection = Direction.Right;
-                    break;
-                case Key.Escape:
-                    MENU_PAUSE.Visibility = Visibility.Visible;
-                    gameTickTimer.IsEnabled = false;
-                    break;
+            if (isSnakeAuthorizedToMove) { 
+                switch (e.Key)
+                {
+                    case Key.Up:
+                    case Key.W:
+                        if (snakeDirection != Direction.Down)
+                            snakeDirection = Direction.Up;
+                        break;
+                    case Key.Down:
+                    case Key.S:
+                        if (snakeDirection != Direction.Up)
+                            snakeDirection = Direction.Down;
+                        break;
+                    case Key.Left:
+                    case Key.A:
+                        if (snakeDirection != Direction.Right)
+                            snakeDirection = Direction.Left;
+                        break;
+                    case Key.Right:
+                    case Key.D:
+                        if (snakeDirection != Direction.Left)
+                            snakeDirection = Direction.Right;
+                        break;
+                    case Key.Escape:
+                        MENU_PAUSE.Visibility = Visibility.Visible;
+                        gameTickTimer.IsEnabled = false;
+                        break;
+                }
+
+                isSnakeAuthorizedToMove = false;
             }
         }
 
         private void DoCollisionCheck()
         {
             SnakePart snakeHead = snakeParts[snakeParts.Count - 1];
-
-            if ((snakeHead.getPosition().X == Canvas.GetLeft(snakeFood.getUiElement())) && (snakeHead.getPosition().Y == Canvas.GetTop(snakeFood.getUiElement())))
-            {
-                EatSnakeFood();
-                return;
-            }
 
             if ((snakeHead.getPosition().Y < 0) || (snakeHead.getPosition().Y >= GameArea.ActualHeight) ||
             (snakeHead.getPosition().X < 0) || (snakeHead.getPosition().X >= GameArea.ActualWidth))
@@ -203,7 +202,19 @@ namespace ProjetSnake2019.Vues
             foreach (SnakePart snakeBodyPart in snakeParts.Take(snakeParts.Count - 1))
             {
                 if ((snakeHead.getPosition().X == snakeBodyPart.getPosition().X) && (snakeHead.getPosition().Y == snakeBodyPart.getPosition().Y))
+                {
                     EndGame();
+                }     
+            }
+        }
+
+        private void DoCollisionCheckFood()
+        {
+            SnakePart snakeHead = snakeParts[snakeParts.Count - 1];
+
+            if ((snakeHead.getPosition().X == Canvas.GetLeft(snakeFood.getUiElement())) && (snakeHead.getPosition().Y == Canvas.GetTop(snakeFood.getUiElement())))
+            {
+                EatSnakeFood();
             }
         }
 
@@ -226,6 +237,7 @@ namespace ProjetSnake2019.Vues
 
         private void EndGame()
         {
+            isAuthorizedToDrawSnake = false;
             gameTickTimer.IsEnabled = false;
             MENU_FIN.Visibility = Visibility.Visible;
         }
@@ -238,6 +250,7 @@ namespace ProjetSnake2019.Vues
         private void GameTickTimer_Tick(object sender, EventArgs e)
         {
             MoveSnake();
+            isSnakeAuthorizedToMove = true;
         }
 
         private void BT_REPRENDRE_Click(object sender, RoutedEventArgs e)
