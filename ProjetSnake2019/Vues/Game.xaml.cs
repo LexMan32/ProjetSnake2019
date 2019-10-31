@@ -128,7 +128,7 @@ namespace ProjetSnake2019.Vues
 
             snakeParts.Add(new SnakePart(new Point(nextX, nextY), TypeSnakePart.Head));
 
-            DoCollisionCheck();
+            DoCollisionCheckWall();
 
             if (isAuthorizedToDrawSnake)
             {
@@ -189,7 +189,7 @@ namespace ProjetSnake2019.Vues
             }
         }
 
-        private void DoCollisionCheck()
+        private void DoCollisionCheckWall()
         {
             SnakePart snakeHead = snakeParts[snakeParts.Count - 1];
 
