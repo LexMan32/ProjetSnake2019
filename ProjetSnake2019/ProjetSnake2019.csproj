@@ -60,10 +60,10 @@
     <Compile Include="Classes\SnakePart.cs" />
     <Compile Include="Enumeration\Direction.cs" />
     <Compile Include="Enumeration\TypeSnakePart.cs" />
-    <Compile Include="Vues\Game.xaml.cs">
+    <Compile Include="View\Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
     </Compile>
-    <Page Include="Vues\Main.xaml">
+    <Page Include="View\Main.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -71,11 +71,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Vues\Main.xaml.cs">
+    <Compile Include="View\Main.xaml.cs">
       <DependentUpon>Main.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Vues\Game.xaml">
+    <Page Include="View\Game.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,25 +102,25 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Resource Include="Ressources\Police\VCR_OSD_MONO_1.001.ttf" />
+    <Resource Include="Resources\Font\VCR_OSD_MONO_1.001.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\Images\Apple.png" />
+    <Resource Include="Resources\Image\Apple.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\Images\SnakeHead.png" />
+    <Resource Include="Resources\Image\SnakeHead.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\Images\SnakeBody.png" />
+    <Resource Include="Resources\Image\SnakeBody.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\Images\SnakeTail.png" />
+    <Resource Include="Resources\Image\SnakeTail.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Ressources\Images\Plateau.png" />
+    <Resource Include="Resources\Image\GameArea.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

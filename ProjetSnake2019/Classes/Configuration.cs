@@ -16,9 +16,9 @@ namespace ProjetSnake2019.Classes
         public const int SNAKE_SPEED_THRESHOLD = 100;
         public const Direction SNAKE_START_DIRECTION = Direction.Right;
 
-        public const string PATCH_IMG_SNAKE_HEAD = "pack://application:,,,/Ressources/Images/SnakeHead.png";
-        public const string PATCH_IMG_SNAKE_BODY = "pack://application:,,,/Ressources/Images/SnakeBody.png";
-        public const string PATCH_IMG_SNAKE_TAIL = "pack://application:,,,/Ressources/Images/SnakeTail.png";
-        public const string PATCH_IMG_APPLE = "pack://application:,,,/Ressources/Images/Apple.png";
+        public const string PATCH_IMG_SNAKE_HEAD = "pack://application:,,,/Resources/Image/SnakeHead.png";
+        public const string PATCH_IMG_SNAKE_BODY = "pack://application:,,,/Resources/Image/SnakeBody.png";
+        public const string PATCH_IMG_SNAKE_TAIL = "pack://application:,,,/Resources/Image/SnakeTail.png";
+        public const string PATCH_IMG_APPLE = "pack://application:,,,/Resources/Image/Apple.png";
     }
 }

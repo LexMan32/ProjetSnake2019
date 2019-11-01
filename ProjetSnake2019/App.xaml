@@ -2,10 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ProjetSnake2019"
-             StartupUri="Vues/Main.xaml">
+             StartupUri="View/Main.xaml">
     <Application.Resources>
-        <FontFamily x:Key="VcrOsdMono">pack://application:,,,/Ressources//#VCR OSD Mono</FontFamily>
-
         <!-- Définition d'un style pour la mise en gras des boutons des menus -->
         <Style x:Key="Button" TargetType="Button">
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
@@ -13,7 +11,7 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Background" Value="{x:Null}"/>
-            <Setter Property="FontFamily" Value="pack://application:,,,/Ressources/Police/#VCR OSD Mono"/>
+            <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Font/#VCR OSD Mono"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="Template">
                 <Setter.Value>
