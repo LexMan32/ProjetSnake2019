@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace ProjetSnake2019.Vues
 {
@@ -53,9 +54,9 @@ namespace ProjetSnake2019.Vues
             currentScore = 0;
             snakeDirection = Direction.Right;
 
-            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 3, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Tail));
-            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 4, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Body));
-            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 5, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Head));
+            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 3, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Tail, Configuration.SNAKE_START_DIRECTION));
+            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 4, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Body, Configuration.SNAKE_START_DIRECTION));
+            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 5, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Head, Configuration.SNAKE_START_DIRECTION));
 
             gameTickTimer.Interval = TimeSpan.FromMilliseconds(Configuration.SNAKE_START_SPEED);
 
@@ -75,6 +76,26 @@ namespace ProjetSnake2019.Vues
             foreach (SnakePart snakePart in snakeParts)
             {
                 GameArea.Children.Add(snakePart.getUiElement());
+
+                if (snakePart.getTypeSnakePart() == TypeSnakePart.Head || snakePart.getTypeSnakePart() == TypeSnakePart.Tail)
+                {
+                    switch (snakePart.getDirection())
+                    {
+                        case Direction.Left:
+                            snakePart.getUiElement().RenderTransform = new RotateTransform(180, 18, 18);
+                            break;
+                        case Direction.Right:
+                            snakePart.getUiElement().RenderTransform = new RotateTransform(0, 18, 18);
+                            break;
+                        case Direction.Up:
+                            snakePart.getUiElement().RenderTransform = new RotateTransform(270, 18, 18);
+                            break;
+                        case Direction.Down:
+                            snakePart.getUiElement().RenderTransform = new RotateTransform(90, 18, 18);
+                            break;
+                    }
+                }
+                
                 Canvas.SetTop(snakePart.getUiElement(), snakePart.getPosition().Y);
                 Canvas.SetLeft(snakePart.getUiElement(), snakePart.getPosition().X);
             }
@@ -87,11 +108,12 @@ namespace ProjetSnake2019.Vues
             GameArea.Children.Add(snakeFood.getUiElement());
             Canvas.SetTop(snakeFood.getUiElement(), snakeFood.getPosition().Y);
             Canvas.SetLeft(snakeFood.getUiElement(), snakeFood.getPosition().X);
+
         }
 
         private void MoveSnake()
         {
-            while (snakeParts.Count >= snakeLength)
+            while (snakeParts.Count == snakeLength)
             {
                 GameArea.Children.Remove(snakeParts[0].getUiElement());
                 GameArea.Children.Remove(snakeParts[1].getUiElement());
@@ -126,7 +148,7 @@ namespace ProjetSnake2019.Vues
                     break;
             }
 
-            snakeParts.Add(new SnakePart(new Point(nextX, nextY), TypeSnakePart.Head));
+            snakeParts.Add(new SnakePart(new Point(nextX, nextY), TypeSnakePart.Head, snakeDirection));
 
             DoCollisionCheckWall();
 

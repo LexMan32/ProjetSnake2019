@@ -11,11 +11,13 @@ namespace ProjetSnake2019.Classes
         private UIElement uiElement;
         private Point position;
         private TypeSnakePart typeSnakePart;
+        private Direction direction;
 
-        public SnakePart(Point position, TypeSnakePart typeSnakePart)
+        public SnakePart(Point position, TypeSnakePart typeSnakePart, Direction direction)
         {
             this.position = position;
             this.typeSnakePart = typeSnakePart;
+            this.direction = direction;
 
             updateUiElement();
         }
@@ -74,6 +76,15 @@ namespace ProjetSnake2019.Classes
             this.typeSnakePart = typeSnakePart;
 
             updateUiElement();
+        }
+
+        public Direction getDirection()
+        {
+            return direction;
+        }
+        public void setDirection(Direction direction)
+        {
+            this.direction = direction;
         }
     }
 }
