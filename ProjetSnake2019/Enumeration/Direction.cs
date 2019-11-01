@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjetSnake2019.Enumeration
+﻿namespace ProjetSnake2019.Enumeration
 {
+    /// <summary>
+    /// Enumération des directions possibles dans le jeux.
+    /// </summary>
     public enum Direction
     {
         Left,
