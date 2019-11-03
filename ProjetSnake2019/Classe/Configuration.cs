@@ -12,7 +12,7 @@ namespace ProjetSnake2019.Classe
         public const int SNAKE_START_LENGTH = 3;
         public const int SNAKE_START_SPEED = 400;
         public const int SNAKE_SPEED_THRESHOLD = 100;
-        public const Direction SNAKE_START_DIRECTION = Direction.Right;
+        public const Direction SNAKE_START_DIRECTION = Direction.RIGHT;
 
         // Chemin d'accès vers les images
         public const string PATH_IMG_SNAKE_HEAD = "pack://application:,,,/Resources/Image/SnakeHead.png";

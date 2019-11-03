@@ -5,9 +5,9 @@
     /// </summary>
     public enum Direction
     {
-        Left,
-        Right,
-        Up,
-        Down
+        LEFT,
+        RIGHT,
+        UP,
+        DOWN
     }
 }

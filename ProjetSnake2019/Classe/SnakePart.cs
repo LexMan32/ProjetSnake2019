@@ -30,17 +30,17 @@ namespace ProjetSnake2019.Classe
             this.direction = direction;
 
             // Mise à jour de l'UI
-            updateUiElement();
+            UpdateUiElement();
         }
 
         /// <summary>
         /// Mise à jour de l'UI de la partie du serpent.
         /// </summary>
-        private void updateUiElement()
+        private void UpdateUiElement()
         {
             switch (typeSnakePart)
             {
-                case TypeSnakePart.Head:
+                case TypeSnakePart.HEAD:
                     uiElement = new Image()
                     {
                         Source = new BitmapImage(new Uri(Configuration.PATH_IMG_SNAKE_HEAD)),
@@ -48,7 +48,7 @@ namespace ProjetSnake2019.Classe
                         Height = Configuration.SNAKE_SQUARE_SIZE
                     };
                     break;
-                case TypeSnakePart.Body:
+                case TypeSnakePart.BODY:
                     uiElement = new Image()
                     {
                         Source = new BitmapImage(new Uri(Configuration.PATH_IMG_SNAKE_BODY)),
@@ -56,7 +56,7 @@ namespace ProjetSnake2019.Classe
                         Height = Configuration.SNAKE_SQUARE_SIZE
                     };
                     break;
-                case TypeSnakePart.Tail:
+                case TypeSnakePart.TAIL:
                     uiElement = new Image()
                     {
                         Source = new BitmapImage(new Uri(Configuration.PATH_IMG_SNAKE_TAIL)),
@@ -71,7 +71,7 @@ namespace ProjetSnake2019.Classe
         /// Getter pour l'élément UI.
         /// </summary>
         /// <returns>Elément UI</returns>
-        public UIElement getUiElement()
+        public UIElement GetUiElement()
         {
             return uiElement;
         }
@@ -80,7 +80,7 @@ namespace ProjetSnake2019.Classe
         /// Getter pour la position de l'élément.
         /// </summary>
         /// <returns>Position de l'élément</returns>
-        public Point getPosition()
+        public Point GetPosition()
         {
             return position;
         }
@@ -89,7 +89,7 @@ namespace ProjetSnake2019.Classe
         /// Getter pour le type de l'élément.
         /// </summary>
         /// <returns>Type de l'élément</returns>
-        public TypeSnakePart getTypeSnakePart()
+        public TypeSnakePart GetTypeSnakePart()
         {
             return typeSnakePart;
         }
@@ -98,19 +98,19 @@ namespace ProjetSnake2019.Classe
         /// Setter pour le type de l'élément.
         /// </summary>
         /// <param name="typeSnakePart">Type de l'élément</param>
-        public void setTypeSnakePart(TypeSnakePart typeSnakePart)
+        public void SetTypeSnakePart(TypeSnakePart typeSnakePart)
         {
             this.typeSnakePart = typeSnakePart;
 
             // Mise à jour de l'UI
-            updateUiElement();
+            UpdateUiElement();
         }
 
         /// <summary>
         /// Getter pour la direction de l'élément.
         /// </summary>
         /// <returns>Direction de l'élément</returns>
-        public Direction getDirection()
+        public Direction GetDirection()
         {
             return direction;
         }

@@ -5,8 +5,8 @@
     /// </summary>
     public enum TypeSnakePart
     {
-        Head,
-        Body,
-        Tail
+        HEAD,
+        BODY,
+        TAIL
     }
 }

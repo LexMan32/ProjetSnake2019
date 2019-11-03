@@ -20,7 +20,7 @@
   <Class Name="ProjetSnake2019.Classe.SnakeFood">
     <Position X="5.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAAAAAAAIAAAAAAAAAAQAAAAAAABAAA=</HashCode>
+      <HashCode>AAEAAAAAACAAAAAAAAAAIAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
       <FileName>Classe\SnakeFood.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -33,7 +33,7 @@
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAIAgAAAAAJAAQAAQAIAAAAAAAAAAQAAAAQAABAAA=</HashCode>
+      <HashCode>AAEAAAAAACAIIAAAAAQAIAQAAAAAAAAQAAAAAAAEAAA=</HashCode>
       <FileName>Classe\SnakePart.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -74,14 +74,14 @@
   <Enum Name="ProjetSnake2019.Enumeration.Direction">
     <Position X="8.75" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAACACAAAAAAAI=</HashCode>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAICAAAgAAAAAAAAAAA=</HashCode>
       <FileName>Enumeration\Direction.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="ProjetSnake2019.Enumeration.TypeSnakePart">
     <Position X="8.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAIAAAAABAAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAQA=</HashCode>
       <FileName>Enumeration\TypeSnakePart.cs</FileName>
     </TypeIdentifier>
   </Enum>

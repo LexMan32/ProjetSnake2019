@@ -49,8 +49,8 @@ namespace ProjetSnake2019.View
             // Nettoyage du corps du serpent
             foreach (SnakePart snakeBodyPart in snakeParts)
             {
-                if (snakeBodyPart.getUiElement() != null) { 
-                    GameArea.Children.Remove(snakeBodyPart.getUiElement());
+                if (snakeBodyPart.GetUiElement() != null) { 
+                    GameArea.Children.Remove(snakeBodyPart.GetUiElement());
                 }
             }
             snakeParts.Clear();
@@ -58,18 +58,18 @@ namespace ProjetSnake2019.View
             // Nettoyage de la nourriture
             if (snakeFood != null)
             {
-                GameArea.Children.Remove(snakeFood.getUiElement());
+                GameArea.Children.Remove(snakeFood.GetUiElement());
             }
 
             // Initilisation des variables de la partie
             snakeLength = Configuration.SNAKE_START_LENGTH;
             currentScore = 0;
-            snakeDirection = Direction.Right;
+            snakeDirection = Direction.RIGHT;
 
             // Ajout des éléments du serpent
-            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 3, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Tail, Configuration.SNAKE_START_DIRECTION));
-            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 4, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Body, Configuration.SNAKE_START_DIRECTION));
-            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 5, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.Head, Configuration.SNAKE_START_DIRECTION));
+            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 3, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.TAIL, Configuration.SNAKE_START_DIRECTION));
+            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 4, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.BODY, Configuration.SNAKE_START_DIRECTION));
+            snakeParts.Add(new SnakePart(new Point(Configuration.SNAKE_SQUARE_SIZE * 5, Configuration.SNAKE_SQUARE_SIZE * 5), TypeSnakePart.HEAD, Configuration.SNAKE_START_DIRECTION));
 
             // Initilisation de l'interval du timer
             gameTickTimer.Interval = TimeSpan.FromMilliseconds(Configuration.SNAKE_START_SPEED);
@@ -97,26 +97,26 @@ namespace ProjetSnake2019.View
             foreach (SnakePart snakePart in snakeParts)
             {
                 // Ajouter la partie au canvas
-                GameArea.Children.Add(snakePart.getUiElement());
-                Canvas.SetTop(snakePart.getUiElement(), snakePart.getPosition().Y);
-                Canvas.SetLeft(snakePart.getUiElement(), snakePart.getPosition().X);
+                GameArea.Children.Add(snakePart.GetUiElement());
+                Canvas.SetTop(snakePart.GetUiElement(), snakePart.GetPosition().Y);
+                Canvas.SetLeft(snakePart.GetUiElement(), snakePart.GetPosition().X);
 
                 // Si la partie du serpent est la tête ou le corps, calcul de la rotation d'après leur direction
-                if (snakePart.getTypeSnakePart() == TypeSnakePart.Head || snakePart.getTypeSnakePart() == TypeSnakePart.Tail)
+                if (snakePart.GetTypeSnakePart() == TypeSnakePart.HEAD || snakePart.GetTypeSnakePart() == TypeSnakePart.TAIL)
                 {
-                    switch (snakePart.getDirection())
+                    switch (snakePart.GetDirection())
                     {
-                        case Direction.Left:
-                            snakePart.getUiElement().RenderTransform = new RotateTransform(180, 18, 18);
+                        case Direction.LEFT:
+                            snakePart.GetUiElement().RenderTransform = new RotateTransform(180, 18, 18);
                             break;
-                        case Direction.Right:
-                            snakePart.getUiElement().RenderTransform = new RotateTransform(0, 18, 18);
+                        case Direction.RIGHT:
+                            snakePart.GetUiElement().RenderTransform = new RotateTransform(0, 18, 18);
                             break;
-                        case Direction.Up:
-                            snakePart.getUiElement().RenderTransform = new RotateTransform(270, 18, 18);
+                        case Direction.UP:
+                            snakePart.GetUiElement().RenderTransform = new RotateTransform(270, 18, 18);
                             break;
-                        case Direction.Down:
-                            snakePart.getUiElement().RenderTransform = new RotateTransform(90, 18, 18);
+                        case Direction.DOWN:
+                            snakePart.GetUiElement().RenderTransform = new RotateTransform(90, 18, 18);
                             break;
                     }
                 }
@@ -132,9 +132,9 @@ namespace ProjetSnake2019.View
             snakeFood = new SnakeFood(GetNextFoodPosition());
             
             // Ajouter l'élément au canvas
-            GameArea.Children.Add(snakeFood.getUiElement());
-            Canvas.SetTop(snakeFood.getUiElement(), snakeFood.getPosition().Y);
-            Canvas.SetLeft(snakeFood.getUiElement(), snakeFood.getPosition().X);
+            GameArea.Children.Add(snakeFood.GetUiElement());
+            Canvas.SetTop(snakeFood.GetUiElement(), snakeFood.GetPosition().Y);
+            Canvas.SetLeft(snakeFood.GetUiElement(), snakeFood.GetPosition().X);
         }
 
         /// <summary>
@@ -146,49 +146,49 @@ namespace ProjetSnake2019.View
             //  dernière partie du corp
             if (snakeParts.Count == snakeLength)
             {
-                GameArea.Children.Remove(snakeParts[0].getUiElement());
-                GameArea.Children.Remove(snakeParts[1].getUiElement());
+                GameArea.Children.Remove(snakeParts[0].GetUiElement());
+                GameArea.Children.Remove(snakeParts[1].GetUiElement());
                 snakeParts.RemoveAt(0);
             }
 
             // Pour chaque partie du serpent, on supprimer les éléments du canvas
             foreach (SnakePart snakePart in snakeParts)
             {
-                GameArea.Children.Remove(snakePart.getUiElement());
+                GameArea.Children.Remove(snakePart.GetUiElement());
             }
 
             // La dernière partie du corps devient la queue
-            snakeParts[0].setTypeSnakePart(TypeSnakePart.Tail);
+            snakeParts[0].SetTypeSnakePart(TypeSnakePart.TAIL);
 
             // Récupération de la tête actuelle
             SnakePart snakeHead = snakeParts[snakeParts.Count - 1];
 
             // La tête devient le corps
-            snakeHead.setTypeSnakePart(TypeSnakePart.Body);
+            snakeHead.SetTypeSnakePart(TypeSnakePart.BODY);
 
             // Récupération des positions actuelle de la tête
-            double nextX = snakeHead.getPosition().X;
-            double nextY = snakeHead.getPosition().Y;
+            double nextX = snakeHead.GetPosition().X;
+            double nextY = snakeHead.GetPosition().Y;
             
             // Calcul des prochaines positions de la tête
             switch (snakeDirection)
             {
-                case Direction.Left:
+                case Direction.LEFT:
                     nextX -= Configuration.SNAKE_SQUARE_SIZE;
                     break;
-                case Direction.Right:
+                case Direction.RIGHT:
                     nextX += Configuration.SNAKE_SQUARE_SIZE;
                     break;
-                case Direction.Up:
+                case Direction.UP:
                     nextY -= Configuration.SNAKE_SQUARE_SIZE;
                     break;
-                case Direction.Down:
+                case Direction.DOWN:
                     nextY += Configuration.SNAKE_SQUARE_SIZE;
                     break;
             }
 
             // Création de la nouvelle tête
-            snakeParts.Add(new SnakePart(new Point(nextX, nextY), TypeSnakePart.Head, snakeDirection));
+            snakeParts.Add(new SnakePart(new Point(nextX, nextY), TypeSnakePart.HEAD, snakeDirection));
 
             // Vérification d'une collision avec les murs ou le corps
             DoCollisionCheckWall();
@@ -220,7 +220,7 @@ namespace ProjetSnake2019.View
             // Vérification de la présence de la nourriture sur le serpent
             foreach (SnakePart snakePart in snakeParts)
             {
-                if ((snakePart.getPosition().X == foodX) && (snakePart.getPosition().Y == foodY))
+                if ((snakePart.GetPosition().X == foodX) && (snakePart.GetPosition().Y == foodY))
                 {
                     return GetNextFoodPosition();
                 }
@@ -242,23 +242,23 @@ namespace ProjetSnake2019.View
                 {
                     case Key.Up:
                     case Key.W:
-                        if (snakeDirection != Direction.Down)
-                            snakeDirection = Direction.Up;
+                        if (snakeDirection != Direction.DOWN)
+                            snakeDirection = Direction.UP;
                         break;
                     case Key.Down:
                     case Key.S:
-                        if (snakeDirection != Direction.Up)
-                            snakeDirection = Direction.Down;
+                        if (snakeDirection != Direction.UP)
+                            snakeDirection = Direction.DOWN;
                         break;
                     case Key.Left:
                     case Key.A:
-                        if (snakeDirection != Direction.Right)
-                            snakeDirection = Direction.Left;
+                        if (snakeDirection != Direction.RIGHT)
+                            snakeDirection = Direction.LEFT;
                         break;
                     case Key.Right:
                     case Key.D:
-                        if (snakeDirection != Direction.Left)
-                            snakeDirection = Direction.Right;
+                        if (snakeDirection != Direction.LEFT)
+                            snakeDirection = Direction.RIGHT;
                         break;
                     case Key.Escape:
                         MenuPause.Visibility = Visibility.Visible;
@@ -280,8 +280,8 @@ namespace ProjetSnake2019.View
             SnakePart snakeHead = snakeParts[snakeParts.Count - 1];
 
             // Vérification d'une collision avec les murs
-            if ((snakeHead.getPosition().Y < 0) || (snakeHead.getPosition().Y >= GameArea.ActualHeight) ||
-            (snakeHead.getPosition().X < 0) || (snakeHead.getPosition().X >= GameArea.ActualWidth))
+            if ((snakeHead.GetPosition().Y < 0) || (snakeHead.GetPosition().Y >= GameArea.ActualHeight) ||
+            (snakeHead.GetPosition().X < 0) || (snakeHead.GetPosition().X >= GameArea.ActualWidth))
             {
                 EndGame();
             }
@@ -289,7 +289,7 @@ namespace ProjetSnake2019.View
             // Vérification d'une collision avec une partie du serpent
             foreach (SnakePart snakeBodyPart in snakeParts.Take(snakeParts.Count - 1))
             {
-                if ((snakeHead.getPosition().X == snakeBodyPart.getPosition().X) && (snakeHead.getPosition().Y == snakeBodyPart.getPosition().Y))
+                if ((snakeHead.GetPosition().X == snakeBodyPart.GetPosition().X) && (snakeHead.GetPosition().Y == snakeBodyPart.GetPosition().Y))
                 {
                     EndGame();
                 }     
@@ -305,7 +305,7 @@ namespace ProjetSnake2019.View
             SnakePart snakeHead = snakeParts[snakeParts.Count - 1];
 
             // Vérification d'une collision avec la nourriture
-            if ((snakeHead.getPosition().X == Canvas.GetLeft(snakeFood.getUiElement())) && (snakeHead.getPosition().Y == Canvas.GetTop(snakeFood.getUiElement())))
+            if ((snakeHead.GetPosition().X == Canvas.GetLeft(snakeFood.GetUiElement())) && (snakeHead.GetPosition().Y == Canvas.GetTop(snakeFood.GetUiElement())))
             {
                 EatSnakeFood();
             }
@@ -327,7 +327,7 @@ namespace ProjetSnake2019.View
             gameTickTimer.Interval = TimeSpan.FromMilliseconds(timerInterval);
 
             // Suppresion du canvas de la nourriture actuelle
-            GameArea.Children.Remove(snakeFood.getUiElement());
+            GameArea.Children.Remove(snakeFood.GetUiElement());
 
             // Affichage d'une nouvelle nourriture
             DrawSnakeFood();

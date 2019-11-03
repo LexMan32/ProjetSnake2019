@@ -35,7 +35,7 @@ namespace ProjetSnake2019.Classe
         /// Getter pour l'élément UI.
         /// </summary>
         /// <returns>Elément UI</returns>
-        public UIElement getUiElement()
+        public UIElement GetUiElement()
         {
             return uiElement;
         }
@@ -44,7 +44,7 @@ namespace ProjetSnake2019.Classe
         /// Getter pour la position de la nourriture.
         /// </summary>
         /// <returns>Position de la nourriture</returns>
-        public Point getPosition()
+        public Point GetPosition()
         {
             return position;
         }
